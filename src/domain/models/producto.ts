@@ -5,7 +5,7 @@ export class productos {
     precio:number;
     cantidad_disponible:number;
 
-    // cuando tenemos varias caracteristicas es mejor pasar por parametro un json
+    // cuando tenemos varias caracteristicas es mejor pasar por parametro un json con las caracteristicas
     constructor(infoProducto:{
         id:number;
         nombre:string;
