@@ -1,5 +1,5 @@
 export class Producto {
-    id:number;
+    id?:number;
     nombre:string;
     descripcion:string;
     precio:number;
@@ -7,7 +7,7 @@ export class Producto {
 
     // cuando tenemos varias caracteristicas es mejor pasar por parametro un json con las caracteristicas
     constructor(infoProducto:{
-        id:number;
+        id?:number;
         nombre:string;
         descripcion:string;
         precio:number;

@@ -1,5 +1,5 @@
-import { ProductoRepositori } from "./src/infrastructure/repositories/producto-repositori"; 
-import { Producto } from "./src/domain/models/producto";
+import { ProductoRepositori } from "./src/infrastructure/repositories/Producto-repositori"; 
+import { Producto } from "./src/domain/models/Producto";
 
 // la clase que tiene acceso a las base de datos
 const productoRepositori = new ProductoRepositori();
