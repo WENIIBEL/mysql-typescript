@@ -1,13 +1,13 @@
 // aqui interactuamos con la base de datos+
-import { get } from "http";
-import { productos } from "../../domain/models/producto";
+
+import { Producto } from "../../domain/models/producto";
 import { getPoolConnection } from "./data-source";
 
 
-export class productoRepositori {
+export class ProductoRepositori {
 
-    async agregarProducto(producto:productos) {
-        
+    async agregarProducto(producto:Producto) {
+
         const connetion = getPoolConnection();
         const querySql = `INSERT INTO PRODUCTOS (nombre,descripcion,precio,cantida_disponible) values (?,?,?,?)`
         const values = [producto.nombre,producto.descripcion,producto.precio,producto.cantidad_disponible];
