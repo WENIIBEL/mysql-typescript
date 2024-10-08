@@ -10,5 +10,6 @@ export const getPoolConnection = async () => {
         password : config.password,
         database : config.database,
         port: config.port,
-    })
-}
+    });
+    return connetion;
+};
