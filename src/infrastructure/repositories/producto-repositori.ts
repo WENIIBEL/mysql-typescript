@@ -1,6 +1,6 @@
 // aqui interactuamos con la base de datos+
 
-import { Producto } from "../../domain/models/producto";
+import { Producto } from "../../domain/models/Producto";
 import { getPoolConnection } from "./data-source";
 
 

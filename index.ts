@@ -5,7 +5,7 @@ import { Producto } from "./src/domain/models/producto";
 const productoRepositori = new ProductoRepositori();
 
 // agregamos los productos
-const producto1 = new Producto({
+const producto1 = new Producto ({
     nombre: "televisor LG",
     descripcion: "televisor LG 40 pulgadas",
     precio: 1000000,
