@@ -3,7 +3,7 @@
 import mysql from "mysql2/promise";
 import  config from "../../../config/default";
 
-export const getPoolConnection = async () => {
+export const getPoolConnection =  () => {
     const connetion = mysql.createPool({
         host: config.host,
         user: config.user,
