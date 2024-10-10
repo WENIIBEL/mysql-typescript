@@ -1,15 +1,20 @@
-//crea la conexión con la BD
+// Librería de conexión a la base de datos
+// Libraría externa: https://sidorares.github.io/node-mysql2/docs/documentation/typescript-examples
+import mysql from "mysql2/promise";
 
-import mysql from 'mysql2/promise'; // esto es una libreria externa a la BD
-import  config from "../../../config/default";
+// Configuración de la conexión a la base de datos
+import config from "../../../config/default";
 
-// crea la coneción a las BD
-export const getPoolConnection = async () => {
-    const connection = mysql.createPool({
-        host: config.host,
-        user: config.user,
-        password : config.password,
-        database : config.database,
-    });
-    return connection;
+/**
+ * Crear una conexión a la base de datos
+ * @returns Conexión a la base de datos
+ */
+export const getPoolConnection =  () => {
+  const connection = mysql.createPool({
+    host: config.host,
+    user: config.user,
+    password: config.password,
+    database: config.database,
+  });
+  return connection;
 };
