@@ -2,6 +2,7 @@ import { ProductoRepositori } from "./src/infrastructure/repositories/Producto-r
 import { Producto } from "./src/domain/models/Producto";
 
 import * as readline from "readline";
+import { productoController } from "./src/infrastructure/controlllers/producto.controller";
 // @ts-ignore
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 
@@ -18,48 +19,57 @@ const leerDatos = (mensaje: string): Promise<string> =>
 const main = async () => {
     const productoRepositori = new ProductoRepositori();
     const menu = `
-    1. listar Productos
-    2. agregar productos
-    0. salir
+    1. Listar Productos
+    2. Agregar productos
+    3. Modificar producto
+    4. eliminar producto
+    5. consultar producto
+    0. salir 
     `;
+    let _opcion = await leerDatos(menu)
+    let opcion = Number(_opcion)
+    const productoCtrl = new productoController
+    while(opcion !== 0) {
+        switch(opcion){
+            case 1:
+               await productoCtrl.obtener();
+                break;
+            case 2:
+                const nombre = await leerDatos ("ingrese el nombre del producto: ")
+                const descripcion = await leerDatos ("ingresela descripcion del producto: ")
+                const precio_ = await leerDatos ("ingrese el precio del producto: ")
+                const  precio = Number (precio_)
+                const cantidad = await leerDatos ("ingrese el cantidad del producto: ")
+                await productoCtrl.agregar({
+                    nombre,
+                    descripcion, 
+                    precio,
+                    cantidad_disponible: Number(cantidad)
+                })
+               
+            case 3:
+                ///modificar 
+                break;
+            case 4: 
+            // eliminar 
+            break;
+            
+            case 5:
+            const _id = await leerDatos ("ingrese el id precio del producto a consultar: ")
+             const id = + _id
+             await productoCtrl.obtenerPorID(id)
 
-
-
-
-
-
-   //agregamos los productos
-    const producto1 = new Producto({
-        nombre: "televisor LG",
-        descripcion: "televisor LG 40 pulgadas",
-        precio: 1000000,
-        cantidad_disponible: 10,
-    })
-    const result = await productoRepositori.agregarProducto(producto1)
-    console.log(result);
-    
-   // CONSULTA DE UN SOLO PRODUCTO
-    const resultadoProducto3 = await productoRepositori.obtenerProducto(3)
-    if (resultadoProducto3.length > 0){
-        const jsonProducto3 = resultadoProducto3[0]
-        // CAPTURAMOS EL PODRUCTO
-        const producto3 = jsonProducto3 as Producto // hacemos el casteo
-        console.log(producto3);
-
-        producto3.nombre = "Televisor  SAMGUM 35PUL";
-        producto3.descripcion = "es de 35 pulgadas"
-        const resultadoActual3 = await productoRepositori.modificarProductos(producto3)
-        console.log(resultadoActual3)
+            break;
+            
+            default:
+                console.log("opcion no reconocida")
+                break;
+        }
+        _opcion = await leerDatos(menu)
+        opcion = Number(_opcion)
+         
     }
-
-    // eliminar producto
-    await productoRepositori.eliminarProductos(3) 
-
-    const productos = await productoRepositori.obtenerProductos()
-    console.log(productos)
-    
-
-
+    rl.close();  
 }
 
 main();
