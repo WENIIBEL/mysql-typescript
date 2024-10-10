@@ -1,22 +1,42 @@
 import { ProductoRepositori } from "./src/infrastructure/repositories/Producto-repositori";
 import { Producto } from "./src/domain/models/Producto";
-import { RowDataPacket } from "mysql2";
+
+import * as readline from "readline";
+// @ts-ignore
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+
+// Es el reemplazo de leer en el pseint
+const leerDatos = (mensaje: string): Promise<string> =>
+  new Promise((resolve) => rl.question(mensaje, (respuesta: string) => resolve(respuesta)));
+
 
 // la clase que tiene acceso a las base de datos
-const productoRepositori = new ProductoRepositori();
+
 
 
 
 const main = async () => {
-   // agregamos los productos
-    // const producto1 = new Producto({
-    //     nombre: "televisor LG",
-    //     descripcion: "televisor LG 40 pulgadas",
-    //     precio: 1000000,
-    //     cantidad_disponible: 10,
-    // })
-    // const result = await productoRepositori.agregarProducto(producto1)
-    // console.log(result);
+    const productoRepositori = new ProductoRepositori();
+    const menu = `
+    1. listar Productos
+    2. agregar productos
+    0. salir
+    `;
+
+
+
+
+
+
+   //agregamos los productos
+    const producto1 = new Producto({
+        nombre: "televisor LG",
+        descripcion: "televisor LG 40 pulgadas",
+        precio: 1000000,
+        cantidad_disponible: 10,
+    })
+    const result = await productoRepositori.agregarProducto(producto1)
+    console.log(result);
     
    // CONSULTA DE UN SOLO PRODUCTO
     const resultadoProducto3 = await productoRepositori.obtenerProducto(3)
