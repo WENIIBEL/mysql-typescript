@@ -2,7 +2,7 @@
 // para evitar que vean la contraseña
 
 export default {
-    host : "localhost2",
+    host : "localhost",
     port: "3306",
     user: "root",
     password: "0987654321w",
