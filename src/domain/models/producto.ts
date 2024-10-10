@@ -1,3 +1,5 @@
+// logica de la aplicacion
+
 export class Producto {
     id?:number;
     nombre:string;

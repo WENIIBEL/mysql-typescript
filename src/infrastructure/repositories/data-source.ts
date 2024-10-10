@@ -1,6 +1,6 @@
 //crea la conexión con la BD
 
-import mysql from 'mysql2/promise';
+import mysql from 'mysql2/promise'; // esto es una libreria externa
 import  config from "../../../config/default";
 
 export const getPoolConnection = async () => {

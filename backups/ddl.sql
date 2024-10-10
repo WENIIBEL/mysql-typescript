@@ -1,3 +1,6 @@
+-- definición de la base de datos,este codigo me permite crea las tablas en BD 
+-- recordar que DDL es el lenguaje de definición de datos 
+
 -- tienda_virtual.categorias definition
 
 CREATE TABLE `categorias` (
