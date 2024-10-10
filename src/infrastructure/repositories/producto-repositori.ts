@@ -15,45 +15,52 @@ import { ResultSetHeader, RowDataPacket } from "mysql2";
  */
 export class ProductoRepositori {
 
-    async agregarProducto(producto:Producto) {
+    async agregarProducto(producto: Producto) {
         const connection = getPoolConnection();
         const querySql = `INSERT INTO PRODUCTOS (nombre,descripcion,precio,cantidad_disponible) values (?,?,?,?)`
-        const values = [producto.nombre,producto.descripcion,producto.precio,producto.cantidad_disponible];
+        const values = [producto.nombre, producto.descripcion, producto.precio, producto.cantidad_disponible];
 
-        const result =  await connection.query(querySql, values);
+        const result = await connection.query(querySql, values);
         return result;
     }
 
-    async obtenerProductos(idProducto:number): Promise<RowDataPacket[]> {
+    async obtenerProductos() {
+        const connection = getPoolConnection();
+        const querySql = `SELECT * FROM Productos`;
+        const result = await connection.query(querySql);
+        return result;
+    }
+
+    async obtenerProducto(idProducto: number): Promise<RowDataPacket[]> {
         const connection = getPoolConnection();
         const querySql = `SELECT * FROM productos WHERE id = ?`;
         const values = [idProducto];
-        const queyResult =   await connection.query<RowDataPacket[]>(querySql, values)
+        const queyResult = await connection.query<RowDataPacket[]>(querySql, values)
         return queyResult[0];
     }
 
-    async modificarProductos(producto:Producto) {
+    async modificarProductos(producto: Producto) {
         const connection = getPoolConnection();
         const querySql = `UPDATE productos SET nombre=?, descripcion=?, precio=?, cantidad_disponible=? WHERE id=?`;
-        const  values = [producto.nombre,producto.descripcion,producto.precio,producto.cantidad_disponible,producto.id]
+        const values = [producto.nombre, producto.descripcion, producto.precio, producto.cantidad_disponible, producto.id]
 
-        const result = await connection.query<ResultSetHeader>(querySql,values);
-        return result;
-    }
-
-    async eliminarProductos(idProducto:number) {
-        const connection = getPoolConnection();
-        const querySql = `DELETE FROM tienda_virtual.productos WHERE id=0;`;
-        const  values = [idProducto]
-        const result = await connection.query(querySql,values);
+        const result = await connection.query<ResultSetHeader>(querySql, values);
         return result[0];
     }
 
-    async unSoloProductos(idProducto:number) {
+    async eliminarProductos(idProducto: number) {
+        const connection = getPoolConnection();
+        const querySql = `DELETE FROM tienda_virtual.productos WHERE id=?;`;
+        const values = [idProducto]
+        const result = await connection.query(querySql, values);
+        return result[0];
+    }
+
+    async unSoloProductos(idProducto: number) {
         const connection = getPoolConnection();
         const querySql = `SELECT * FROM productos WHERE id = ?`;
-        const  values = [idProducto]
-        const result = await connection.query(querySql,values);
+        const values = [idProducto]
+        const result = await connection.query(querySql, values);
         return result;
     }
 
