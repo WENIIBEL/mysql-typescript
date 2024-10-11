@@ -33,4 +33,8 @@ export class productoController {
         console.log(result)
         return result;
     }
+
+    async modificar(producto:Producto){
+        const result = await this.repositori.modificarProductos(producto);
+    }
 }

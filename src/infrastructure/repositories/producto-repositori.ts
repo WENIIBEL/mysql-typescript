@@ -1,6 +1,6 @@
 // aqui interactuamos con la base de datos+
 
-import { get } from "http";
+
 import { Producto } from "../../domain/models/Producto";
 import { getPoolConnection } from "./data-source";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
