@@ -1,29 +1,18 @@
-import { getPoolConnection } from "./data-source";
+import { Categoria } from "../../domain/models/categorias";
+import { getPoolConnection } from "../../infrastructure/repositories/data-source";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
 
-
-
-export class Categoria {
-    id?: string
-    nombre:string
-    descripcion:string
-
-    constructor(id:string, nombre:string, descripcion:string) {
-        
-        this.nombre = nombre,
-        this.descripcion = descripcion  
-    }
-
+export class CategoriaRepository {
     async agregarCategoria(categoria: Categoria) {
         const connection = getPoolConnection();
         const querySql = `INSERT INTO categoria (,nombre,descripcion) values (?,?,?,?)`
         const values = [ categoria.nombre, categoria.descripcion];
-
+    
         const result = await connection.query(querySql, values);
         return result;
     }
-
-    async modificar(categoria: Categoria) {
+    
+    async modificarCategoria(categoria: Categoria) {
         
         const connection = getPoolConnection();
         const querySql = `UPDATE categoria SET nombre=?, descripcion=? WHERE id=?`;
@@ -31,7 +20,14 @@ export class Categoria {
     
         const result = await connection.query<ResultSetHeader>(querySql, values);
         return result[0];
-       
-
     }
+
+    async obtenerCategoria() {
+        const connection = getPoolConnection();
+        const querySql = `SELECT * FROM categoria`;
+        const result = await connection.query(querySql);
+        return result;
+    }
+
 }
+
