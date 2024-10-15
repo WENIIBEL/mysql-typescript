@@ -9,7 +9,7 @@ export class CategoriaRepository {
         const values = [ categoria.id,categoria.nombre, categoria.descripcion];
     
         const result = await connection.query(querySql, values);
-        return result;
+        return result[0];
     }
     
     async modificarCategoria(categoria: Categoria) {
