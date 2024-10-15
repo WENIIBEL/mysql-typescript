@@ -25,7 +25,3 @@ export class CategoriaCtrl {
 }
 
 
-// nombre: pyload.nombre,
-
-// const result = await this.repositori.agregarProducto(producto)
-// console.log("producto agregado")
