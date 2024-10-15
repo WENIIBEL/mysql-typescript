@@ -11,9 +11,11 @@
   "license": "ISC",
   "description": "sistemas de pedidos para una tienda",
   "dependencies": {
+    "express": "^4.21.1",
     "mysql2": "^3.11.3"
   },
   "devDependencies": {
+    "@types/express": "^5.0.0",
     "@types/node": "^22.7.4"
   }
 }
