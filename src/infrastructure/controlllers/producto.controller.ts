@@ -9,8 +9,13 @@ export class productoController {
         
     }
     
-    async agregar(pyload:{nombre:string, descripcion:string, precio:number, cantidad_disponible:number}){
+    async agregar(pyload:{id:number,nombre:string,
+        descripcion:string, 
+        precio:number, 
+        cantidad_disponible:number}){
+            
         const producto = new Producto({
+            id:pyload.id,
             nombre: pyload.nombre,
             descripcion: pyload.descripcion,
             precio: pyload.precio,

@@ -7,9 +7,9 @@ export class Categoria {
     nombre:string
     descripcion:string
 
-    constructor(id:string, nombre:string, descripcion:string) {
-        
-        this.nombre = nombre,
-        this.descripcion = descripcion  
+    constructor(infoCategoria:{id:string, nombre:string, descripcion:string}) {
+        this.id = infoCategoria.id
+        this.nombre = infoCategoria.nombre
+        this.descripcion = infoCategoria.descripcion  
     }
 }

@@ -5,8 +5,8 @@ import { ResultSetHeader, RowDataPacket } from "mysql2";
 export class CategoriaRepository {
     async agregarCategoria(categoria: Categoria) {
         const connection = getPoolConnection();
-        const querySql = `INSERT INTO categoria (,nombre,descripcion) values (?,?,?,?)`
-        const values = [ categoria.nombre, categoria.descripcion];
+        const querySql = `INSERT INTO categoria (id,nombre,descripcion) values (?,?,?)`
+        const values = [ categoria.id,categoria.nombre, categoria.descripcion];
     
         const result = await connection.query(querySql, values);
         return result;
